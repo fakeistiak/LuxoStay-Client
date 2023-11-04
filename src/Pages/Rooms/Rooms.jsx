@@ -1,5 +1,6 @@
 import { Box, Card, Grid, Inset, Select, Strong, Text } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
@@ -56,18 +57,20 @@ const Rooms = () => {
                 pb="current"
                 className="overflow-hidden "
               >
-                <img
-                  className="hover:scale-105 transition duration-150 cursor-pointer"
-                  src={room.roomImage}
-                  alt="Bold typography"
-                  style={{
-                    display: "block",
-                    objectFit: "cover",
-                    width: "100%",
-                    height: 200,
-                    backgroundColor: "var(--gray-5)",
-                  }}
-                />
+                <Link to={"/rooms/" + room._id}>
+                  <img
+                    className="hover:scale-105 transition duration-150 cursor-pointer"
+                    src={room.roomImage}
+                    alt="Bold typography"
+                    style={{
+                      display: "block",
+                      objectFit: "cover",
+                      width: "100%",
+                      height: 200,
+                      backgroundColor: "var(--gray-5)",
+                    }}
+                  />
+                </Link>
               </Inset>
               <Text as="p" size="3">
                 <Strong>{room.title}</Strong>
