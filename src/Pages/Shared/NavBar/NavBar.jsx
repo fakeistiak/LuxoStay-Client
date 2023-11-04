@@ -1,12 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 
-import { Button } from "@radix-ui/themes";
+import { Avatar, Button, DropdownMenu } from "@radix-ui/themes";
 import useAuth from "../../../api/useAuth";
 
 const NavBar = () => {
   // Initialize a state variable for the user's login status
   const { user, logOut } = useAuth();
-  console.log(user);
+  console.log(user.photoURL);
   return (
     <nav className="px-5 h-14 flex items-center border-b justify-between">
       <h1>Logo</h1>
@@ -25,7 +25,17 @@ const NavBar = () => {
       </ul>
 
       {user ? (
-        <Button onClick={() => logOut()}> Logout</Button>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger>
+            <Avatar fallback="?" src={user.photoURL} radius="full" />
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Content>
+            <DropdownMenu.Item disabled>{user.email}</DropdownMenu.Item>
+            <DropdownMenu.Item onClick={() => logOut()}>
+              Logout
+            </DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Root>
       ) : (
         <Link to={"/login"}>
           <Button>Login</Button>
