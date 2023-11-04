@@ -6,7 +6,7 @@ const NavBar = () => {
   const { user, logOut } = useAuth();
 
   return (
-    <nav className="px-5 h-14 flex items-center border-b justify-between">
+    <nav className="px-5 h-14 flex items-center border-b justify-between fixed w-full ">
       <h1>Logo</h1>
       <ul className="flex items-center gap-7">
         {navOptions.map((item) => (
@@ -27,7 +27,14 @@ const NavBar = () => {
       {user ? (
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <Avatar fallback="?" src={user?.photoURL} radius="full" />
+            <Avatar
+              fallback="A"
+              src={
+                user?.photoURL ||
+                "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png"
+              }
+              radius="full"
+            />
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
             <DropdownMenu.Item disabled>{user?.email}</DropdownMenu.Item>

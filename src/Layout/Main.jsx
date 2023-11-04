@@ -7,7 +7,7 @@ const Main = () => {
   return (
     <Theme accentColor="red">
       <NavBar></NavBar>
-      <div className="p-5">
+      <div className="p-5 pt-20">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

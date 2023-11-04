@@ -1,6 +1,7 @@
 import { Box, Card, Grid, Inset, Select, Strong, Text } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
@@ -31,7 +32,7 @@ const Rooms = () => {
     setRooms(sortedRooms);
   };
 
-  if (loading) return <h1>Loading</h1>;
+  if (loading) return <Loader />;
 
   return (
     <div>

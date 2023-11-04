@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 const RoomDetails = () => {
   const [roomData, setRoomData] = useState([]);
@@ -22,7 +23,7 @@ const RoomDetails = () => {
 
   console.log(roomData);
 
-  if (loading) return <h1>Loading..</h1>;
+  if (loading) return <Loader/>
 
   const handleBooking = async (id) => {
     axios
@@ -51,7 +52,7 @@ const RoomDetails = () => {
         alt=""
       />
 
-      <div className="flex justify-between">
+      <div className="lg:flex justify-between ">
         {" "}
         <div className="space-y-3 max-w-lg  ">
           {specialOffer !== "N/A" && (

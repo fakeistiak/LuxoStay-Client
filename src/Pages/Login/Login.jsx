@@ -22,7 +22,7 @@ const Login = () => {
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
-        Swal.fire("Login Failed", error.message, "error");
+        // Swal.fire("Login Failed", error.message, "error");
         console.error(error);
       });
   };
