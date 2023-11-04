@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Login = () => {
-  const [user, setUser] = useState(null); 
+  const [user, setUser] = useState(null);
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
   const location = useLocation();
@@ -18,7 +18,7 @@ const Login = () => {
       .then((result) => {
         const loggedInUser = result.user;
         setUser(loggedInUser);
-        Swal.fire("Login Successful", "EXPLORE THE PAGE", "success"); 
+        Swal.fire("Login Successful", "EXPLORE THE PAGE", "success");
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
@@ -102,17 +102,16 @@ const Login = () => {
                   >
                     Sign in
                   </button>
-                  <div className="flex">
-                    <button
-                      onClick={handleGoogleSignIn}
-                      className="btn btn-ghost w-full mt-4 text-white border-white hover:bg-gray-200 hover:text-black"
-                    >
-                      Sign In with Google{" "}
-                      <FcGoogle className="text-2xl"></FcGoogle>{" "}
-                    </button>
-                  </div>
                 </div>
               </form>
+              <div className="flex">
+                <button
+                  onClick={handleGoogleSignIn}
+                  className="btn btn-ghost w-full mt-4 text-white border-white hover:bg-gray-200 hover:text-black"
+                >
+                  Sign In with Google <FcGoogle className="text-2xl"></FcGoogle>{" "}
+                </button>
+              </div>
               <p className="mt-6 text-sm text-center text-gray-400">
                 Dont have an account yet?
                 <Link

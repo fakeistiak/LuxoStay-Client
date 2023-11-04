@@ -1,12 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
-
 import { Avatar, Button, DropdownMenu } from "@radix-ui/themes";
 import useAuth from "../../../api/useAuth";
 
 const NavBar = () => {
-  // Initialize a state variable for the user's login status
   const { user, logOut } = useAuth();
-  console.log(user.photoURL);
+
   return (
     <nav className="px-5 h-14 flex items-center border-b justify-between">
       <h1>Logo</h1>
@@ -16,7 +14,9 @@ const NavBar = () => {
             key={item.label}
             to={item.path}
             className={({ isActive }) =>
-              isActive ? "font-semibold text-black" : ""
+              isActive
+                ? "text-black"
+                : "text-gray-400 hover:text-gray-600 transition duration-200"
             }
           >
             <li>{item.label}</li>
@@ -27,10 +27,10 @@ const NavBar = () => {
       {user ? (
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <Avatar fallback="?" src={user.photoURL} radius="full" />
+            <Avatar fallback="?" src={user?.photoURL} radius="full" />
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
-            <DropdownMenu.Item disabled>{user.email}</DropdownMenu.Item>
+            <DropdownMenu.Item disabled>{user?.email}</DropdownMenu.Item>
             <DropdownMenu.Item onClick={() => logOut()}>
               Logout
             </DropdownMenu.Item>

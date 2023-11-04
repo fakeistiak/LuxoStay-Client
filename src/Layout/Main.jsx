@@ -5,7 +5,7 @@ import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 const Main = () => {
   return (
-    <Theme accentColor="sky">
+    <Theme accentColor="red">
       <NavBar></NavBar>
       <div className="p-5">
         <Outlet></Outlet>
