@@ -6,8 +6,10 @@ import { Theme } from "@radix-ui/themes";
 const Main = () => {
   return (
     <Theme accentColor="red">
-      <NavBar></NavBar>
-      <div className="p-5 pt-20">
+      <div>
+        <NavBar></NavBar>
+      </div>
+      <div className="pt-4">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

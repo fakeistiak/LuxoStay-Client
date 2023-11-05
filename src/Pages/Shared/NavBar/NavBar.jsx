@@ -6,7 +6,7 @@ const NavBar = () => {
   const { user, logOut } = useAuth();
 
   return (
-    <nav className="px-5 h-14 flex items-center border-b justify-between fixed w-full ">
+    <nav className="px-5 h-14 flex items-center border-b justify-between">
       <h1>Logo</h1>
       <ul className="flex items-center gap-7">
         {navOptions.map((item) => (
