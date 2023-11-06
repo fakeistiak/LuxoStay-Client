@@ -4,10 +4,16 @@ import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
+import useAuth from "../../api/useAuth";
+import Swal from "sweetalert2";
 
 const RoomDetails = () => {
+  const { user } = useAuth();
+  const [refetch, setRefetch] = useState(false);
   const [roomData, setRoomData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isSubmitting, setSubmitting] = useState(false);
+  const [date, setDate] = useState("");
   const params = useParams();
   console.log(params);
 
@@ -19,21 +25,35 @@ const RoomDetails = () => {
         setRoomData(data);
         setLoading(false);
       });
-  }, [params.id]);
+  }, [params.id, refetch]);
 
   console.log(roomData);
 
-  if (loading) return <Loader/>
+  if (loading) return <Loader />;
 
   const handleBooking = async (id) => {
+    setSubmitting(true);
     axios
-      .patch("http://localhost:5000/booking/" + id)
+      .patch("http://localhost:5000/booking/" + id, { isBooked: true })
       .then((res) => console.log(res))
 
       .catch((err) => console.log(err.message));
-    
-    
-    
+
+    delete roomData._id;
+
+    axios
+      .post("http://localhost:5000/mybookings", {
+        ...roomData,
+        email: user.email,
+        bookingDate: date,
+        roomId: id,
+      })
+      .then((res) => {
+        if (res.data.insertedId)
+          Swal.fire("Congratulations!", "Booking successful", "success");
+        setRefetch();
+        setSubmitting(false);
+      });
   };
 
   const {
@@ -69,16 +89,19 @@ const RoomDetails = () => {
           <p className="text-gray-400">Room Size: {roomSize}</p>
           <p className="text-gray-400">{description}</p>
         </div>
-        <div className="flex items-center flex-col gap-3">
-          <input type="date" />
-          <Button
-            disabled={isBooked}
-            onClick={() => handleBooking(_id)}
-            size="4"
-          >
+        <form
+          onSubmit={() => handleBooking(_id)}
+          className="flex items-center flex-col gap-3"
+        >
+          <input
+            onChange={(e) => setDate(e.target.value)}
+            required
+            type="date"
+          />
+          <Button disabled={isBooked || isSubmitting} size="4">
             Book Now
           </Button>
-        </div>
+        </form>
       </div>
     </div>
   );

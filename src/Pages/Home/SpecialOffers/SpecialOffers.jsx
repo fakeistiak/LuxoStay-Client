@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import offersData from "../../../../public/offers.json";
 
 const SpecialOffer = ({ offer }) => {
@@ -24,9 +25,9 @@ const SpecialOffer = ({ offer }) => {
               Ratings:{" "}
               <span className="text-red-500 font-semibold">{ratings}</span>
             </h1>
-            <button className="btn bg-rose-500 text-white hover:bg-rose-600">
-              Book Now
-            </button>
+            <Link to="/rooms" className="btn bg-rose-500 text-white hover:bg-rose-600">
+              View Details
+            </Link>
           </div>
         </div>
       </div>

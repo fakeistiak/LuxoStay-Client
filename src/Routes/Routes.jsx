@@ -6,7 +6,8 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Rooms from "../Pages/Rooms/Rooms";
 import RoomDetails from "../Pages/Rooms/RoomDetails";
-// import MyBookings from "../Pages/Rooms/MyBookings";
+import MyBookings from "../Pages/Rooms/MyBookings";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,8 +35,8 @@ const router = createBrowserRouter([
         element: <RoomDetails />,
       },
       {
-        // path: "/myBookings",
-        // element: <MyBookings></MyBookings>
+        path: "/myBookings",
+        element: <MyBookings></MyBookings>,
       },
     ],
   },

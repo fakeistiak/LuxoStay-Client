@@ -1,9 +1,8 @@
-import { Parallax } from "@react-spring/parallax";
 
 const Hero = () => {
   return (
     <div>
-      <Parallax pages>
+    
         <section
           className="hero relative text-white py-56"
           style={{
@@ -30,7 +29,7 @@ const Hero = () => {
             </a>
           </div>
         </section>
-      </Parallax>
+
     </div>
   );
 };
