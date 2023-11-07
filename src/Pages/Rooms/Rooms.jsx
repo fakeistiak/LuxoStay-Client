@@ -29,9 +29,12 @@ const Rooms = () => {
     }
   });
 
+    
+    
+    
   setRooms(sortedRooms);
 };
-
+const availableRooms = rooms.filter((room) => room.isBooked === false);
   if (loading) return <Loader />;
 
   return (
@@ -39,9 +42,9 @@ const Rooms = () => {
       <h2 className="text-4xl text-center font-bold font-serif">
         Explore Our Rooms
       </h2>
-      <h1 className="text-4xl font-bold font-serif pb-8">
-        Available Rooms: <span className="text-red-500">{rooms.length}</span>
-      </h1>
+      <h2 className="text-4xl font-bold">
+        Available Rooms: {availableRooms.length}
+      </h2>
       <Box className="px-10">
         <Select.Root onValueChange={handleSortChange} value={sortOrder}>
           <Select.Trigger />

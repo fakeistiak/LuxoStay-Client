@@ -47,6 +47,7 @@ const RoomDetails = () => {
           roomId: id,
         })
         .then((res) => {
+          console.log(res)
           if (res.data.insertedId) {
             Swal.fire("Congratulations!", "Booking successful", "success");
             setRefetch(!refetch);
@@ -83,7 +84,10 @@ const RoomDetails = () => {
               <p className="text-gray-400">{roomData.description}</p>
             </div>
             <form
-              onSubmit={() => handleBooking(roomData._id)}
+                onSubmit={(e) => {
+                  handleBooking(roomData._id);
+                  e.preventDefault()
+              }}
               className="flex items-center flex-col gap-3"
             >
               <input

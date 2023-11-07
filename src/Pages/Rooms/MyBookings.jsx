@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import useAuth from "../../api/useAuth";
 import axios from "axios";
 import Loader from "../../components/Loader";
-import { Avatar, Button, Flex, Table, Text } from "@radix-ui/themes";
-import { Cross1Icon, Pencil2Icon } from "@radix-ui/react-icons";
+import { Avatar, Badge, Button, Flex, Table, Text } from "@radix-ui/themes";
+import { Cross1Icon } from "@radix-ui/react-icons";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import UpdateModal from "../../components/UpdateModal";
 
 const MyBookings = () => {
   const { user } = useAuth();
+  const [refetch, setRefetch] = useState(false);
   const [loading, setLoading] = useState(true);
   const [rooms, setRooms] = useState([]);
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +29,7 @@ const MyBookings = () => {
     };
 
     fetchData();
-  }, [user]);
+  }, [user, setRefetch, refetch]);
 
   const handleDelete = (id, roomId) => {
     Swal.fire({
@@ -48,19 +50,13 @@ const MyBookings = () => {
               .then((res) => res.json())
               .then((data) => {
                 console.log(data);
-                if (data.message === "Booking Canceled successfully") {
+                if (data.message === "Booking deleted successfully") {
                   Swal.fire({
                     title: "Canceled Successful",
                     icon: "success",
                   });
                   const remaining = rooms.filter((room) => room._id !== id);
                   setRooms(remaining);
-                } else {
-                  Swal.fire({
-                    title: "Cancel Failed",
-                    text: "The booking could not be Canceled.",
-                    icon: "error",
-                  });
                 }
               })
               .catch((error) => {
@@ -114,7 +110,7 @@ const MyBookings = () => {
     <div className="max-w-6xl mx-auto py-10">
       <Table.Root variant="surface">
         <Table.Header>
-          <Table.Row >
+          <Table.Row>
             {options.map((item) => (
               <Table.RowHeaderCell key={item.value}>
                 {item.label}
@@ -125,9 +121,11 @@ const MyBookings = () => {
 
         <Table.Body>
           {rooms?.map((room) => (
-            <Table.Row key={room._id}>
+            <Table.Row key={room._id} className="">
               <Table.Cell>
-                <Avatar  fallback="R" src={room?.roomImage} radius="full" />
+                <Link to={"/rooms/" + room._id}>
+                  <Avatar fallback="R" src={room?.roomImage} radius="full" />
+                </Link>
               </Table.Cell>
               <Table.Cell>
                 <Text as="p">{room?.title}</Text>
@@ -145,7 +143,7 @@ const MyBookings = () => {
               <Table.Cell>
                 <Flex gap="2">
                   {room.status === "confirm" ? (
-                    <span className="text-primary font-bold">Confirmed</span>
+                    <Badge color="blue">Confirmed</Badge>
                   ) : (
                     <>
                       <Button
@@ -154,9 +152,11 @@ const MyBookings = () => {
                       >
                         <Cross1Icon />
                       </Button>
-                      <Button color="indigo">
-                        <Pencil2Icon />
-                      </Button>
+                      <UpdateModal
+                        date={room.bookingDate}
+                        id={room._id}
+                        setRefetch={setRefetch}
+                      />
                       <Button
                         onClick={() => handleBookingConfirm(room._id)}
                         color="green"
