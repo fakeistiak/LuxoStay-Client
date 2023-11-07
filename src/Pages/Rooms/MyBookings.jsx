@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../api/useAuth";
 import axios from "axios";
 import Loader from "../../components/Loader";
@@ -10,6 +10,7 @@ const MyBookings = () => {
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   const [rooms, setRooms] = useState([]);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,38 +31,34 @@ const MyBookings = () => {
 
   const handleDelete = (id, roomId) => {
     Swal.fire({
-      title: "Are you sure you want to delete?",
+      title: "Are you sure you want to Cancel?",
       text: "This action cannot be undone.",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((proceed) => {
-      if (proceed) {
-        // First, update the booking status using Axios
+      if (proceed.isConfirmed) {
         axios
           .patch(`http://localhost:5000/booking/${roomId}`, { isBooked: false })
           .then((res) => {
             console.log(res);
-            // After successfully updating the booking status, proceed with deleting the booking from the state and show a success message.
             fetch(`http://localhost:5000/mybookings/${id}`, {
               method: "DELETE",
             })
               .then((res) => res.json())
               .then((data) => {
                 console.log(data);
-                if (data.message === "Booking deleted successfully") {
+                if (data.message === "Booking Canceled successfully") {
                   Swal.fire({
-                    title: "Deleted Successful",
+                    title: "Canceled Successful",
                     icon: "success",
                   });
-
-                  // Remove the deleted booking from the state
                   const remaining = rooms.filter((room) => room._id !== id);
                   setRooms(remaining);
                 } else {
                   Swal.fire({
-                    title: "Delete Failed",
-                    text: "The booking could not be deleted.",
+                    title: "Cancel Failed",
+                    text: "The booking could not be Canceled.",
                     icon: "error",
                   });
                 }
@@ -87,11 +84,37 @@ const MyBookings = () => {
     });
   };
 
+  const handleBookingConfirm = (id) => {
+    fetch(`http://localhost:5000/mybookings/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status: "confirm" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          const remaining = rooms.filter((booking) => booking._id !== id);
+          const updated = rooms.find((booking) => booking._id === id);
+          updated.status = "confirm";
+          const newBookings = [updated, ...remaining];
+          setRooms(newBookings);
+        }
+      })
+      .catch((error) => {
+        console.error("Error confirming booking:", error);
+      });
+  };
+
+  if (loading) return <Loader />;
+
   return (
     <div className="max-w-6xl mx-auto py-10">
       <Table.Root variant="surface">
         <Table.Header>
-          <Table.Row>
+          <Table.Row >
             {options.map((item) => (
               <Table.RowHeaderCell key={item.value}>
                 {item.label}
@@ -104,28 +127,46 @@ const MyBookings = () => {
           {rooms?.map((room) => (
             <Table.Row key={room._id}>
               <Table.Cell>
-                <Avatar fallback="R" src={room?.roomImage} radius="full" />
+                <Avatar  fallback="R" src={room?.roomImage} radius="full" />
               </Table.Cell>
               <Table.Cell>
-                <Text as="p"> {room?.title}</Text>
+                <Text as="p">{room?.title}</Text>
               </Table.Cell>
               <Table.Cell>
-                <Text as="p"> ${room?.pricePerNight}</Text>
+                <Text as="p">${room?.pricePerNight}</Text>
               </Table.Cell>
               <Table.Cell>
-                <Text as="p"> {new Date().toLocaleDateString()}</Text>
+                <Text as="p">
+                  {room?.bookingDate
+                    ? new Date(room.bookingDate).toLocaleDateString()
+                    : "N/A"}
+                </Text>
               </Table.Cell>
               <Table.Cell>
                 <Flex gap="2">
-                  <Button color="indigo">
-                    <Pencil2Icon />
-                  </Button>
-                  <Button
-                    onClick={() => handleDelete(room._id, room.roomId)}
-                    variant="outline"
-                  >
-                    <Cross1Icon />
-                  </Button>
+                  {room.status === "confirm" ? (
+                    <span className="text-primary font-bold">Confirmed</span>
+                  ) : (
+                    <>
+                      <Button
+                        onClick={() => handleDelete(room._id, room.roomId)}
+                        variant="outline"
+                      >
+                        <Cross1Icon />
+                      </Button>
+                      <Button color="indigo">
+                        <Pencil2Icon />
+                      </Button>
+                      <Button
+                        onClick={() => handleBookingConfirm(room._id)}
+                        color="green"
+                        variant="solid"
+                        disabled={room.status === "confirm"}
+                      >
+                        Confirm
+                      </Button>
+                    </>
+                  )}
                 </Flex>
               </Table.Cell>
             </Table.Row>

@@ -27,13 +27,13 @@ const NavBar = () => {
       {user ? (
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <Avatar
-              fallback="A"
+            <img
+              className="w-10 h-10 object-cover rounded-full"
               src={
                 user?.photoURL ||
                 "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png"
               }
-              radius="full"
+              alt="User Avatar"
             />
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>

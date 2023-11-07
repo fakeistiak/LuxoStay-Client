@@ -19,18 +19,18 @@ const Rooms = () => {
   }, []);
 
   const handleSortChange = (value) => {
-    setSortOrder(value);
+  setSortOrder(value);
 
-    const sortedRooms = [...rooms].sort((room1, room2) => {
-      if (value === "high") {
-        return room2.pricePerNight - room1.pricePerNight; // Sort from high to low
-      } else if (value === "low") {
-        return room1.pricePerNight - room2.pricePerNight; // Sort from low to high
-      }
-    });
+  const sortedRooms = [...rooms].sort((room1, room2) => {
+    if (value === "high") {
+      return room1.pricePerNight - room2.pricePerNight; // Sort from high to low
+    } else if (value === "low") {
+      return room2.pricePerNight - room1.pricePerNight; // Sort from low to high
+    }
+  });
 
-    setRooms(sortedRooms);
-  };
+  setRooms(sortedRooms);
+};
 
   if (loading) return <Loader />;
 
@@ -39,7 +39,9 @@ const Rooms = () => {
       <h2 className="text-4xl text-center font-bold font-serif">
         Explore Our Rooms
       </h2>
-
+      <h1 className="text-4xl font-bold font-serif pb-8">
+        Available Rooms: <span className="text-red-500">{rooms.length}</span>
+      </h1>
       <Box className="px-10">
         <Select.Root onValueChange={handleSortChange} value={sortOrder}>
           <Select.Trigger />
