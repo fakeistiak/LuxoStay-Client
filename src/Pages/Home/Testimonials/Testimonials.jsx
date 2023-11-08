@@ -20,7 +20,7 @@ const Testimonials = () => {
   return (
     <div className="bg-gray-100 py-12 my-20">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-6">
+        <h2 className="text-3xl text-red-500 font-bold text-center mb-6">
           User Testimonials
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

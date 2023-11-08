@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import offersData from "../../../../public/offers.json";
+import Demo from "../../Rooms/Demo";
 
 const SpecialOffer = ({ offer }) => {
   const { img, title, price, discount, ratings } = offer;
@@ -39,7 +40,10 @@ const SpecialOffers = () => {
   return (
     <>
       <div className="text-center pt-12 pb-12">
-        <h1 className="font-serif font-bold text-red-500 text-5xl pb-2">
+        <h1 className="text-5xl text-center text-red-500 font-bold font-serif underline pt-4">Demo Rooms</h1>
+        <p className="pb-10 pt-2">some of our demo rooms with premium collections</p>
+        <Demo></Demo>
+        <h1 className="font-serif font-bold underline text-red-500 text-5xl pb-2">
           Special Offers
         </h1>
         <p>

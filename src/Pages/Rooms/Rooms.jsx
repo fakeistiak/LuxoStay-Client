@@ -39,12 +39,10 @@ const availableRooms = rooms.filter((room) => room.isBooked === false);
 
   return (
     <div>
-      <h2 className="text-4xl text-center font-bold font-serif">
+      <h2 className="text-4xl text-red-500 text-center font-bold font-serif underline">
         Explore Our Rooms
       </h2>
-      <h2 className="text-4xl font-bold">
-        Available Rooms: {availableRooms.length}
-      </h2>
+
       <Box className="px-10">
         <Select.Root onValueChange={handleSortChange} value={sortOrder}>
           <Select.Trigger />
@@ -53,7 +51,9 @@ const availableRooms = rooms.filter((room) => room.isBooked === false);
             <Select.Item value="low">Price High To Low</Select.Item>
           </Select.Content>
         </Select.Root>
-
+        <h2 className="text-4xl pt-8 font-bold">
+          Available Rooms: <span className="text-red-500 underline">{availableRooms.length}</span>
+        </h2>
         <Grid columns={{ initial: "1", md: "3" }} gap={"5"} className="mt-10  ">
           {rooms?.map((room) => (
             <Card key={room._id} size="2" style={{ maxWidth: 450 }}>

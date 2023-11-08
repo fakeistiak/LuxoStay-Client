@@ -150,9 +150,9 @@ const MyBookings = () => {
                         onClick={() => handleDelete(room._id, room.roomId)}
                         variant="outline"
                       >
-                        <Cross1Icon />
+                        <Cross1Icon />Cancel
                       </Button>
-                      <UpdateModal
+                        <UpdateModal 
                         date={room.bookingDate}
                         id={room._id}
                         setRefetch={setRefetch}

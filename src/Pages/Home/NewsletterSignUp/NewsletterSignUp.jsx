@@ -28,7 +28,7 @@ const NewsletterSignUp = () => {
   return (
     <>
       <section className="max-full p-6 mx-auto bg-base-200 rounded-md shadow-md">
-        <h2 className="text-3xl text-center font-semibold text-black pb-8">
+        <h2 className="text-3xl text-center font-semibold text-red-500 pb-8">
           Subscribe to your newsletter for <br /> updates, deals, and exclusive
           offers
         </h2>

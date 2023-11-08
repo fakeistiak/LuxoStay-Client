@@ -6,7 +6,7 @@ const Footer = () => {
       <aside>
         <FaSlackHash className="text-7xl"></FaSlackHash>
         <p className="font-bold">
-          IAB Industries Ltd. <br />
+          Luxo<span className="text-red-500">Stay</span> Industries Ltd. <br />
           Providing reliable rooms since 1992
         </p>
         <p>Copyright © 2023 - All right reserved</p>

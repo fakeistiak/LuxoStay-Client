@@ -7,7 +7,7 @@ const NavBar = () => {
 
   return (
     <nav className="px-5 h-14 flex items-center border-b justify-between">
-      <h1>Logo</h1>
+      <h1 className="lg:text-4xl font-bold font-serif">Luxo<span className="text-red-500">Stay</span></h1>
       <ul className="flex items-center gap-7">
         {navOptions.map((item) => (
           <NavLink
