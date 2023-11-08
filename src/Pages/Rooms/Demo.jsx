@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import Footer from "../Shared/Footer/Footer";
 import Marquee from "react-fast-marquee";
-// import Features from "../Features/features";
-
 const imageUrls = [
   "https://i.ibb.co/VDLj86t/3d-rendering-beautiful-comtemporary-luxury-bedroom-suite-hotel-with-tv.jpg",
   "https://i.ibb.co/y6J6ggh/interior-modern-comfortable-hotel-room.jpg",
