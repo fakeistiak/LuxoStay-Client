@@ -17,16 +17,16 @@ const Register = () => {
     const password = form.get("password");
     console.log(email, password, name, photo, birth);
 
-    if (
-      password.length < 6 ||
-      !/[A-Z]/.test(password) ||
-      !/[!@#$%^&*]/.test(password)
-    ) {
-      toast.error(
-        "Password must be at least 6 characters long, contain a capital letter, and a special character."
-      );
-      return;
-    }
+    // if (
+    //   password.length < 6 ||
+    //   !/[A-Z]/.test(password) ||
+    //   !/[!@#$%^&*]/.test(password)
+    // ) {
+    //   toast.error(
+    //     "Password must be at least 6 characters long, contain a capital letter, and a special character."
+    //   );
+    //   return;
+    // }
 
     createUser(email, password)
       .then((result) => {
