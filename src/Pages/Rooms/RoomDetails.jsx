@@ -6,6 +6,7 @@ import useAuth from "../../api/useAuth";
 import axios from "axios";
 import { Button } from "@radix-ui/themes";
 import Demo from "./Demo";
+import Reviews from "./Reviews";
 
 const RoomDetails = () => {
   const { user } = useAuth();
@@ -59,7 +60,7 @@ const RoomDetails = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6">
       <h1 className="text-4xl text-red-500 font-serif font-bold pb-10 text-center underline">
         {roomData.title}
       </h1>
@@ -142,8 +143,8 @@ const RoomDetails = () => {
                 name="rating-7"
                 className="mask mask-star-2 bg-orange-400"
               />
-            </div>
-            <p></p>
+            </div><br />
+            <Link to="/reviews" className="btn bg-black text-white hover:bg-gray-600">Give a Review</Link>
           </div>
         </div>
       </div>
@@ -168,7 +169,7 @@ const RoomDetails = () => {
         amenities and personalized spaces, all designed to make your journey
         unforgettable. Your ideal room is just a click away.
       </p>
-      <h1 className="text-black text-lg font-semibold lg:relative lg:bottom-28">
+      <h1 className="text-black text-lg font-semibold lg:relative lg:bottom-40">
         Prize Range: <span className=" text-red-500">800$-1500$</span>
       </h1>
       <Link
