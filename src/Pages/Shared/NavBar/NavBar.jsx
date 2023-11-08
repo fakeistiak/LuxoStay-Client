@@ -53,7 +53,7 @@ const NavBar = () => {
 };
 
 const navOptions = [
-  { label: "Home", path: "" },
+  { label: "Home", path: ""},
   { label: "Rooms", path: "/rooms" },
   { label: "My Bookings", path: "/mybookings" },
 ];

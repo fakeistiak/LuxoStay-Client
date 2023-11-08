@@ -6,7 +6,7 @@ import useAuth from "../../api/useAuth";
 import axios from "axios";
 import { Button } from "@radix-ui/themes";
 import Demo from "./Demo";
-import Reviews from "./Reviews";
+// import Reviews from "./Reviews";
 
 const RoomDetails = () => {
   const { user } = useAuth();
@@ -143,8 +143,14 @@ const RoomDetails = () => {
                 name="rating-7"
                 className="mask mask-star-2 bg-orange-400"
               />
-            </div><br />
-            <Link to="/reviews" className="btn bg-black text-white hover:bg-gray-600">Give a Review</Link>
+            </div>
+            <br />
+            <Link
+              to="/reviews"
+              className="btn bg-black text-white hover:bg-gray-600"
+            >
+              Give a Review
+            </Link>
           </div>
         </div>
       </div>
