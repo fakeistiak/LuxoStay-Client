@@ -6,7 +6,6 @@ import useAuth from "../../api/useAuth";
 import axios from "axios";
 import { Button } from "@radix-ui/themes";
 import Demo from "./Demo";
-// import Reviews from "./Reviews";
 
 const RoomDetails = () => {
   const { user } = useAuth();
