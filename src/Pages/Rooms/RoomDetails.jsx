@@ -19,7 +19,7 @@ const RoomDetails = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/rooms/${params.id}`)
+    fetch(`https://assignment-11-server-five-mu.vercel.app/rooms/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
         setRoomData(data);
@@ -31,7 +31,10 @@ const RoomDetails = () => {
     if (!roomData.isBooked) {
       setSubmitting(true);
       axios
-        .patch(`http://localhost:5000/booking/${id}`, { isBooked: true })
+        .patch(
+          `https://assignment-11-server-five-mu.vercel.app/booking/${id}`,
+          { isBooked: true }
+        )
         .then((res) => {
           console.log(res);
         })
@@ -42,14 +45,14 @@ const RoomDetails = () => {
       delete roomData._id;
 
       axios
-        .post("http://localhost:5000/mybookings", {
+        .post("https://assignment-11-server-five-mu.vercel.app/mybookings", {
           ...roomData,
           email: user.email,
           bookingDate: date,
           roomId: id,
         })
         .then((res) => {
-          console.log(res)
+          console.log(res);
           if (res.data.insertedId) {
             Swal.fire("Congratulations!", "Booking successful", "success");
             setRefetch(!refetch);

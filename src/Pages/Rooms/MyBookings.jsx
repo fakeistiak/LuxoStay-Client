@@ -18,7 +18,7 @@ const MyBookings = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const url = `http://localhost:5000/mybookings/${user?.email}`;
+        const url = `https://assignment-11-server-five-mu.vercel.app/mybookings/${user?.email}`;
         const response = await axios.get(url);
         setRooms(response.data);
         setLoading(false);
@@ -41,12 +41,18 @@ const MyBookings = () => {
     }).then((proceed) => {
       if (proceed.isConfirmed) {
         axios
-          .patch(`http://localhost:5000/booking/${roomId}`, { isBooked: false })
+          .patch(
+            `https://assignment-11-server-five-mu.vercel.app/booking/${roomId}`,
+            { isBooked: false }
+          )
           .then((res) => {
             console.log(res);
-            fetch(`http://localhost:5000/mybookings/${id}`, {
-              method: "DELETE",
-            })
+            fetch(
+              `https://assignment-11-server-five-mu.vercel.app/mybookings/${id}`,
+              {
+                method: "DELETE",
+              }
+            )
               .then((res) => res.json())
               .then((data) => {
                 console.log(data);
@@ -81,7 +87,7 @@ const MyBookings = () => {
   };
 
   const handleBookingConfirm = (id) => {
-    fetch(`http://localhost:5000/mybookings/${id}`, {
+    fetch(`https://assignment-11-server-five-mu.vercel.app/mybookings/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -150,9 +156,10 @@ const MyBookings = () => {
                         onClick={() => handleDelete(room._id, room.roomId)}
                         variant="outline"
                       >
-                        <Cross1Icon />Cancel
+                        <Cross1Icon />
+                        Cancel
                       </Button>
-                        <UpdateModal 
+                      <UpdateModal
                         date={room.bookingDate}
                         id={room._id}
                         setRefetch={setRefetch}

@@ -10,7 +10,7 @@ const Rooms = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/rooms")
+    fetch("https://assignment-11-server-five-mu.vercel.app/rooms")
       .then((res) => res.json())
       .then((data) => {
         setRooms(data);
@@ -19,22 +19,19 @@ const Rooms = () => {
   }, []);
 
   const handleSortChange = (value) => {
-  setSortOrder(value);
+    setSortOrder(value);
 
-  const sortedRooms = [...rooms].sort((room1, room2) => {
-    if (value === "high") {
-      return room1.pricePerNight - room2.pricePerNight; // Sort from high to low
-    } else if (value === "low") {
-      return room2.pricePerNight - room1.pricePerNight; // Sort from low to high
-    }
-  });
+    const sortedRooms = [...rooms].sort((room1, room2) => {
+      if (value === "high") {
+        return room1.pricePerNight - room2.pricePerNight; // Sort from high to low
+      } else if (value === "low") {
+        return room2.pricePerNight - room1.pricePerNight; // Sort from low to high
+      }
+    });
 
-    
-    
-    
-  setRooms(sortedRooms);
-};
-const availableRooms = rooms.filter((room) => room.isBooked === false);
+    setRooms(sortedRooms);
+  };
+  const availableRooms = rooms.filter((room) => room.isBooked === false);
   if (loading) return <Loader />;
 
   return (
@@ -52,7 +49,10 @@ const availableRooms = rooms.filter((room) => room.isBooked === false);
           </Select.Content>
         </Select.Root>
         <h2 className="text-4xl pt-8 font-bold">
-          Available Rooms: <span className="text-red-500 underline">{availableRooms.length}</span>
+          Available Rooms:{" "}
+          <span className="text-red-500 underline">
+            {availableRooms.length}
+          </span>
         </h2>
         <Grid columns={{ initial: "1", md: "3" }} gap={"5"} className="mt-10  ">
           {rooms?.map((room) => (
