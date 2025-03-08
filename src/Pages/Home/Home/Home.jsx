@@ -1,21 +1,17 @@
 
-import Blog from "../Blog/Blog";
+import DemoRooms from "../../Rooms/DemoRooms";
+import Counter from "../Counter/Counter";
 import Hero from "../Hero/Hero";
-import NewsletterSignUp from "../NewsletterSignup/NewsletterSignup";
-import SpecialOffers from "../SpecialOffers/SpecialOffers";
 import Team from "../Team/Team";
-import Testimonials from "../Testimonials/Testimonials";
 
 
 const Home = () => {
     return (
         <div>
-            <Hero></Hero>
-            <SpecialOffers></SpecialOffers>
-            <Blog></Blog>
-            <Testimonials></Testimonials>
-            <Team></Team>
-            <NewsletterSignUp></NewsletterSignUp>
+            <Hero/>
+            <Counter/>
+            <DemoRooms/>
+            <Team/>
         </div>
     );
 };

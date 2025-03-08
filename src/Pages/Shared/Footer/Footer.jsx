@@ -1,8 +1,10 @@
 import { BsFacebook,BsTwitter,BsInstagram,BsYoutube } from "react-icons/bs";
 import { FaSlackHash } from "react-icons/fa";
+import Container from "../../../components/Container";
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-10 text-black">
+    <Container>
+      <footer className="footer footer-center p-10 text-black">
       <aside>
         <FaSlackHash className="text-7xl"></FaSlackHash>
         <p className="font-bold">
@@ -20,6 +22,7 @@ const Footer = () => {
         </div>
       </nav>
     </footer>
+    </Container>
   );
 };
 

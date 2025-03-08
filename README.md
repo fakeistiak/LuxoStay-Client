@@ -1,6 +1,6 @@
 # LuxoStay
 
-## [Website Live Link]=>(https://assignment-11-8f8df.web.app) 
+## [Website Live Link]=>(https://godly-queen.surge.sh/) 
 
 ### Webstie features
 

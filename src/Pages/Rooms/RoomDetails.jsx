@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import useAuth from "../../api/useAuth";
 import axios from "axios";
 import { Button } from "@radix-ui/themes";
-import Demo from "./Demo";
 
 const RoomDetails = () => {
   const { user } = useAuth();
@@ -62,7 +61,7 @@ const RoomDetails = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6 py-20">
       <h1 className="text-4xl text-red-500 font-serif font-bold pb-10 text-center underline">
         {roomData.title}
       </h1>
@@ -156,36 +155,7 @@ const RoomDetails = () => {
           </div>
         </div>
       </div>
-      <h1 className=" text-center text-red-500 font-bold font-serif underline text-4xl">
-        Related Rooms
-      </h1>
-      <p className="text-center text-sm p-4">
-        Discover our recommended rooms to find the perfect accommodation <br />{" "}
-        for your stay, tailored to your needs and preferences
-      </p>
-      <Demo></Demo>
-      <h1 className="text-red-500 text-lg font-semibold lg:relative lg:bottom-12">
-        Premium Rooms:{" "}
-        <span className="text-md text-black">
-          These are the premium collection that we provide
-        </span>
-      </h1>
-      <p className="lg:relative lg:bottom-40">
-        Experience the epitome of comfort and style with our meticulously
-        curated rooms. From deluxe suites to cozy singles, our diverse selection
-        ensures a perfect stay for every traveler. Immerse yourself in luxurious
-        amenities and personalized spaces, all designed to make your journey
-        unforgettable. Your ideal room is just a click away.
-      </p>
-      <h1 className="text-black text-lg font-semibold lg:relative lg:bottom-40">
-        Prize Range: <span className=" text-red-500">800$-1500$</span>
-      </h1>
-      <Link
-        to="/newsLetter"
-        className="btn bg-red-500 text-white hover:text-red-700 lg:relative lg:bottom-24"
-      >
-        Subscribe
-      </Link>
+     
     </div>
   );
 };

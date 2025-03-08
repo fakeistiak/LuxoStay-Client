@@ -8,8 +8,6 @@ import Rooms from "../Pages/Rooms/Rooms";
 import RoomDetails from "../Pages/Rooms/RoomDetails";
 import MyBookings from "../Pages/Rooms/MyBookings";
 import Reviews from "../Pages/Rooms/Reviews";
-import Blog from "../Pages/Home/Blog/Blog";
-import NewsletterSignUp from "../Pages/Home/NewsletterSignup/NewsletterSignup";
 import PrivateRoute from "../Routes/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -51,16 +49,8 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/blog",
-        element: <Blog></Blog>,
-      },
-      {
         path: "/reviews",
         element: <Reviews></Reviews>,
-      },
-      {
-        path: "/newsLetter",
-        element:<PrivateRoute> <NewsletterSignUp></NewsletterSignUp></PrivateRoute>,
       },
     ],
   },

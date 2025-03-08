@@ -1,9 +1,11 @@
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import Container from "../../../components/Container";
 
 const Team = () => {
   return (
-    <section className="bg-white">
+    <Container>
+      <section className="bg-white">
       <div className="container px-6 py-10 mx-auto">
         <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl ">
           Our Executive Team
@@ -96,6 +98,7 @@ const Team = () => {
         </div>
       </div>
     </section>
+    </Container>
   );
 };
 

@@ -1,35 +1,37 @@
-import React from "react";
-import { Parallax } from "react-parallax";
+
 import { Link } from "react-router-dom";
+import Container from "../../../components/Container";
 
 const Hero = () => {
   return (
-    <div>
-      <Parallax
-        bgImage="https://i.ibb.co/rft028M/patrick-robert-doyle-AH8z-KXq-FITA-unsplash.jpg"
-        bgImageAlt="background"
-        strength={500} // You can adjust the strength to control the parallax effect
-      >
-        <section className="hero relative text-white py-56">
-          <div className="container mx-auto pl-8">
-            <h1 className="text-5xl font-bold mb-4 font-serif">
-              Where Comfort Meets <br /> Convenience
-            </h1>
-            <p className="text-lg mb-8">
-              Elevate your travel experience with our vast selection of
-              handpicked <br />
-              rooms. Your next journey begins with a simple click
-            </p>
-            <Link to="/blog"
-              href="#"
-              className="btn bg-rose-600 hover-bg-rose-700 text-white"
-            >
-              Learn More
-            </Link>
-          </div>
-        </section>
-      </Parallax>
-    </div>
+    <Container>
+      <section
+      className="relative text-white py-52 bg-cover bg-center"
+      style={{
+        backgroundImage:
+          "url('https://i.ibb.co.com/gLGw96pF/Screenshot-2025-03-08-201800-1.png')",
+      }}
+    >
+      <div className="absolute inset-0 bg-black/40"></div>
+
+      <div className="relative container mx-auto pl-8">
+        <h1 className="text-5xl font-bold mb-4 font-serif">
+          Where Comfort Meets <br /> Convenience
+        </h1>
+        <p className="text-lg mb-8">
+          Elevate your travel experience with our vast selection of handpicked
+          <br />
+          rooms. Your next journey begins with a simple click
+        </p>
+        <Link
+          to="/blog"
+          className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-md"
+        >
+          Learn More
+        </Link>
+      </div>
+    </section>
+    </Container>
   );
 };
 
