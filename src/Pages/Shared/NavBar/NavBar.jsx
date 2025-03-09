@@ -10,30 +10,27 @@ const NavBar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
       }
     };
-    if (dropdownOpen) document.addEventListener("mousedown", handleClickOutside);
+    if (dropdownOpen)
+      document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [dropdownOpen]);
 
-  // Toggle dropdown
   const toggleDropdown = useCallback(() => {
     setDropdownOpen((prev) => !prev);
   }, []);
 
-  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
@@ -45,7 +42,6 @@ const NavBar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-16">
-        {/* Logo */}
         <Link
           to="/"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -53,8 +49,6 @@ const NavBar = () => {
         >
           Luxo<span className="text-rose-500">Stay</span>
         </Link>
-
-        {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center space-x-8">
           {navOptions.map(({ label, path, icon: Icon }) => (
             <NavLink
@@ -62,7 +56,9 @@ const NavBar = () => {
               to={path}
               className={({ isActive }) =>
                 `flex items-center space-x-2 transition-colors ${
-                  isActive ? "text-rose-500 font-medium" : "text-gray-600 hover:text-rose-500"
+                  isActive
+                    ? "text-rose-500 font-medium"
+                    : "text-gray-600 hover:text-rose-500"
                 }`
               }
             >
@@ -72,7 +68,6 @@ const NavBar = () => {
           ))}
         </ul>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={toggleMobileMenu}
           className="md:hidden p-2 rounded-md hover:bg-gray-100"
@@ -80,7 +75,6 @@ const NavBar = () => {
           <Menu className="h-6 w-6" />
         </button>
 
-        {/* User Menu */}
         <div className="flex items-center space-x-4">
           {user ? (
             <div className="relative hidden md:block" ref={dropdownRef}>
@@ -123,7 +117,6 @@ const NavBar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-40">
           <div className="absolute top-0 right-0 w-64 bg-white shadow-lg p-4">
@@ -135,7 +128,9 @@ const NavBar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>
                     `flex items-center space-x-2 transition-colors ${
-                      isActive ? "text-rose-500 font-medium" : "text-gray-600 hover:text-rose-500"
+                      isActive
+                        ? "text-rose-500 font-medium"
+                        : "text-gray-600 hover:text-rose-500"
                     }`
                   }
                 >
@@ -145,7 +140,6 @@ const NavBar = () => {
               ))}
             </ul>
 
-            {/* User Profile in Mobile Menu */}
             {user && (
               <div className="mt-4">
                 <button
@@ -184,7 +178,6 @@ const NavBar = () => {
   );
 };
 
-// Navigation Items
 const navOptions = [
   { label: "Home", path: "/", icon: Home },
   { label: "Rooms", path: "/rooms", icon: Bed },

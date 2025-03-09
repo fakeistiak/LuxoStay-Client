@@ -1,0 +1,31 @@
+
+
+{
+    "animations": [
+      {
+        "id": "1",
+        "src": "../src/assets/Animation/Animation - 1741539805401.json"
+      },
+      {
+        "id": "2",
+        "src": "../src/assets/Animation/Animation - 1741539931818.json"
+      },
+      {
+        "id": "3",
+        "src": "../src/assets/Animation/Animation - 1741540065436.json"
+      },
+      {
+        "id": "4",
+        "src": "../src/assets/Animation/Animation - 1741540128771.json"
+      },
+      {
+        "id": "5",
+        "src": "../src/assets/Animation/Animation - 1741540184375.json"
+      },
+      {
+        "id": "6",
+        "src": "../src/assets/Animation/Animation - 1741540236403.json"
+      }
+    ]
+  }
+  
