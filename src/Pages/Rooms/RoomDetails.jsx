@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import useAuth from "../../api/useAuth";
 import axios from "axios";
 import { Button } from "@radix-ui/themes";
+import ShowReviews from "./ShowReviews";
+import Container from "../../components/Container";
 
 const RoomDetails = () => {
   const { user } = useAuth();
@@ -17,7 +19,7 @@ const RoomDetails = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://assignment-11-server-five-mu.vercel.app/rooms/${params.id}`)
+    fetch(`http://localhost:5000/rooms/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
         setRoomData(data);
@@ -30,7 +32,7 @@ const RoomDetails = () => {
       setSubmitting(true);
       axios
         .patch(
-          `https://assignment-11-server-five-mu.vercel.app/booking/${id}`,
+          `/booking/${id}`,
           { isBooked: true }
         )
         .then((res) => {
@@ -43,7 +45,7 @@ const RoomDetails = () => {
       delete roomData._id;
 
       axios
-        .post("https://assignment-11-server-five-mu.vercel.app/mybookings", {
+        .post("http://localhost:5000/mybookings", {
           ...roomData,
           email: user.email,
           bookingDate: date,
@@ -61,7 +63,8 @@ const RoomDetails = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6 py-20">
+    <Container>
+      <div className="py-20">
       <h1 className="text-4xl text-red-500 font-serif font-bold pb-10 text-center underline">
         {roomData.title}
       </h1>
@@ -156,7 +159,9 @@ const RoomDetails = () => {
         </div>
       </div>
      
+          <ShowReviews></ShowReviews>
     </div>
+    </Container>
   );
 };
 

@@ -9,6 +9,7 @@ import RoomDetails from "../Pages/Rooms/RoomDetails";
 import MyBookings from "../Pages/Rooms/MyBookings";
 import Reviews from "../Pages/Rooms/Reviews";
 import PrivateRoute from "../Routes/PrivateRoute";
+import ShowReviews from "../Pages/Rooms/ShowReviews";
 
 const router = createBrowserRouter([
   {
@@ -50,8 +51,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/reviews",
-        element: <Reviews></Reviews>,
+        element: <PrivateRoute><Reviews></Reviews></PrivateRoute>,
       },
+      {
+        path:"/showReviews",
+        element:<ShowReviews/>,
+        loader:()=>fetch('http://localhost:5000/reviews')
+      }
     ],
   },
 ]);

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Container from "../../../components/Container";
-import AnimationGrid from "../../Home/Hero/AnimationGrid";
+import Banner from "./Banner";
 
 
 const Hero = () => {
@@ -24,7 +24,7 @@ const Hero = () => {
           </Link>
         </div>
         <div className="w-full h-[300px] md:h-[500px]">
-          <AnimationGrid />
+          <Banner />
         </div>
       </section>
     </Container>

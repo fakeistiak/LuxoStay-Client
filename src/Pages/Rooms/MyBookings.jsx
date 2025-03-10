@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../api/useAuth";
 import axios from "axios";
 import Loader from "../../components/Loader";
@@ -18,7 +18,7 @@ const MyBookings = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const url = `https://assignment-11-server-five-mu.vercel.app/mybookings/${user?.email}`;
+        const url = `http://localhost:5000/mybookings/${user?.email}`;
         const response = await axios.get(url);
         setRooms(response.data);
         setLoading(false);
@@ -42,13 +42,13 @@ const MyBookings = () => {
       if (proceed.isConfirmed) {
         axios
           .patch(
-            `https://assignment-11-server-five-mu.vercel.app/booking/${roomId}`,
+            `http://localhost:5000//booking/${roomId}`,
             { isBooked: false }
           )
           .then((res) => {
             console.log(res);
             fetch(
-              `https://assignment-11-server-five-mu.vercel.app/mybookings/${id}`,
+              `http://localhost:5000//mybookings/${id}`,
               {
                 method: "DELETE",
               }
@@ -87,7 +87,7 @@ const MyBookings = () => {
   };
 
   const handleBookingConfirm = (id) => {
-    fetch(`https://assignment-11-server-five-mu.vercel.app/mybookings/${id}`, {
+    fetch(`http://localhost:5000//mybookings/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

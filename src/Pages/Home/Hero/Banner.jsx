@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import animationData1 from "../../../assets/Animation/Animation - 1741539805401.json";
 import animationData2 from "../../../assets/Animation/Animation - 1741539931818.json";
-import animationData3 from "../../../assets/Animation/Animation - 1741540065436.json";
+import animationData3 from "../../../assets/Animation/Animation - 1729.json";
 import animationData5 from "../../../assets/Animation/Animation - 1741540184375.json";
 
-const AnimationGrid = () => {
+const Banner = () => {
   const [animations, setAnimations] = useState([]);
 
   useEffect(() => {
@@ -59,4 +59,4 @@ const AnimationGrid = () => {
     </div>
   );
 };
-export default AnimationGrid;
+export default Banner;

@@ -1,6 +1,6 @@
 export const getRooms = async () => {
   const res = await fetch(
-    "https://assignment-11-server-five-mu.vercel.app/rooms"
+    "http://localhost:5/rooms"
   );
   const data = await res.json();
   return data;

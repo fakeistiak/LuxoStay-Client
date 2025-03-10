@@ -9,7 +9,7 @@ const UpdateModal = ({ date, id, setRefetch }) => {
   const handleUpdate = () => {
     axios
       .patch(
-        "https://assignment-11-server-five-mu.vercel.app/mybookings/" + id,
+        "http://localhost:5//mybookings/" + id,
         {
           bookingDate: updatedDate,
         }
