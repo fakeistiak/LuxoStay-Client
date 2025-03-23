@@ -36,14 +36,6 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
-
-  const [brands, setBrands] = useState([]);
-  useEffect(() => {
-    fetch("https://assignment-10-k90fiwama-fakeistiak.vercel.app/brand")
-      .then((res) => res.json())
-      .then((data) => setBrands(data));
-  }, []);
-
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("user in the on state changed", currentUser);
@@ -63,7 +55,6 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     updateUser,
-    brands,
   };
 
   return (
